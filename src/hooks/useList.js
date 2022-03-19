@@ -1,6 +1,6 @@
 import * as React from "react";
-import list from "../constants/city.list.json";
-import { IDefaultSearchCountryResponse } from "../constants/defaults";
+import list from "constants/city.list.json";
+import { IDefaultSearchCountryResponse } from "constants/defaults";
 
 export const useFilterList = (inputCountry, inputCity) =>
   React.useMemo(() => {

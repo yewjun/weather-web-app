@@ -8,9 +8,11 @@ export const useCustomHistoryState = (history) => {
     history,
     (initialHistory) => {
       const storage = localStorage.getItem(localStorageLabel);
+
       const initialValue = storage
         ? JSON.parse(storage).values
         : initialHistory;
+
       return customReducer(baseState, {
         type: "init",
         history: initialValue,

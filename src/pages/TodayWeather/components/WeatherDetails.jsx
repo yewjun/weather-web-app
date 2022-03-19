@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useQueryWeatherById } from "../../../queries/weatherQueries";
+import { useQueryWeatherById } from "queries/weatherQueries";
 import { useFormatWeather } from "../hooks/useFormatData";
 
 const WeatherDetails = ({ locationId = "" }) => {

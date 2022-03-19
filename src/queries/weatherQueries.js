@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { getWeatherById } from "../services/weatherService";
+import { getWeatherById } from "services/weatherService";
 import { queryClient } from ".";
 
 export const GetWeatherQueryKey = "getWeather";

@@ -1,6 +1,6 @@
 import * as React from "react";
-import { useHistory } from "../../../providers/HistoryProvider";
-import { usePrevious } from "../../../hooks/usePrevious";
+import { useHistory } from "providers/HistoryProvider";
+import { usePrevious } from "hooks/usePrevious";
 
 const SearchHistoryView = (props) => (
   <div>

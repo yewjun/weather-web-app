@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useFormik } from "formik";
-import { useFilterList } from "../../../hooks/useList";
-import { IDefaultSearchCountryResponse } from "../../../constants/defaults";
+import { useFilterList } from "hooks/useList";
+import { IDefaultSearchCountryResponse } from "constants/defaults";
 
 const SearchInputView = ({ setLocation }) => {
   const initialValues = {

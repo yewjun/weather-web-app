@@ -1,10 +1,9 @@
 import * as React from "react";
 import SearchInputView from "./components/SearchInput";
 import SearchHistoryView from "./components/SearchHistory";
-import WeatherDetails from './components/WeatherDetails';
-import { IDefaultLocation } from "../../constants/defaults";
+import WeatherDetails from "./components/WeatherDetails";
+import { IDefaultLocation } from "constants/defaults";
 import { useQueryWeather } from "./hooks/useQueryWeather";
-
 
 const TodayWeather = () => {
   const [location, setLocation] = React.useState(() => IDefaultLocation);
@@ -12,7 +11,7 @@ const TodayWeather = () => {
 
   React.useEffect(() => {
     if (location.id) refetch();
-  }, [location]);
+  }, [location, refetch]);
 
   return (
     <div className="App">

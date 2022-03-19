@@ -3,7 +3,7 @@ import {
   kelvinToCelsius,
   celsiusSymbolText,
   formatDateTime,
-} from "../../../helper/convertor";
+} from "helper/convertor";
 
 export const useFormatWeather = (queryData) => {
   return React.useMemo(() => {
