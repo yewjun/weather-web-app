@@ -1,7 +1,12 @@
 import { useQuery } from "react-query";
 import { getWeatherById } from "../services/weather.service";
-import { useCustomHistoryState } from "../pages/TodayWeather/hooks/useCustomHistory";
+import { queryClient } from "./";
+
+export const GetWeatherQueryKey = "getWeather";
 
 export const useGetWeatherById = (id, options) => {
-  return useQuery(["getWeather", id], () => getWeatherById(id), options);
+  return useQuery([GetWeatherQueryKey, id], () => getWeatherById(id), options);
 };
+
+export const useQueryWeatherById = (id) =>
+  queryClient.getQueryData([GetWeatherQueryKey, id]);

@@ -1,0 +1,13 @@
+import { format } from "date-fns";
+
+export const fahrenheitToCelsius = (fahrenheit) => {
+  return (((fahrenheit - 32) * 5) / 9).toFixed(2);
+};
+
+export const celsiusSymbolText = (celsius) => {
+  return celsius + "\xB0C.";
+};
+
+export const formatDateTime = (datetime) => {
+  return format(new Date(datetime * 1000), "dd/MM/yyyy HH:mm:ssaa");
+};

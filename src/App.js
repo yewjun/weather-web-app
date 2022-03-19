@@ -1,11 +1,10 @@
 import * as React from "react";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClientProvider } from "react-query";
 
 import TodayWeather from "./pages/TodayWeather";
 import { HistoryProvider } from "./providers/HistoryProvider";
-
-const queryClient = new QueryClient();
+import { queryClient } from "./queries";
 
 function App() {
   return (

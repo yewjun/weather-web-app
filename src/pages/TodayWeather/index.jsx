@@ -1,8 +1,10 @@
 import * as React from "react";
 import SearchInputView from "./components/SearchInput";
 import SearchHistoryView from "./components/SearchHistory";
+import WeatherDetails from './components/WeatherDetails';
 import { IDefaultLocation } from "../../constants/defaults";
 import { useQueryWeather } from "./hooks/useQueryWeather";
+
 
 const TodayWeather = () => {
   const [location, setLocation] = React.useState(() => IDefaultLocation);
@@ -15,6 +17,7 @@ const TodayWeather = () => {
   return (
     <div className="App">
       <SearchInputView setLocation={setLocation} />
+      <WeatherDetails locationId={location.id} />
       <SearchHistoryView
         selectedHistory={location}
         setSelectedHistory={setLocation}
