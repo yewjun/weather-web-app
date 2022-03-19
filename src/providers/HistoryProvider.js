@@ -1,5 +1,5 @@
 import React from "react";
-import { useCustomHistoryState } from "pages/TodayWeather/hooks/useCustomHistory";
+import { useCustomHistoryState } from "pages/WeatherPage/hooks/useCustomHistory";
 
 const HistoryContext = React.createContext();
 

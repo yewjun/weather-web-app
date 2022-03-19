@@ -1,15 +1,9 @@
 import * as React from "react";
 import { useHistory } from "providers/HistoryProvider";
 import { usePrevious } from "hooks/usePrevious";
+import { SearchButton, DeleteButton } from "components/Button";
 
-const SearchHistoryView = (props) => (
-  <div>
-    Search History
-    <SearchHistoryList {...props} />
-  </div>
-);
-
-const SearchHistoryList = ({
+export const SearchHistoryList = ({
   selectedHistory,
   setSelectedHistory,
   refetch,
@@ -43,10 +37,11 @@ const HistoryListView = ({ data, onDelete, onSearch }) => {
       <span>{city}</span>
       <span>{country}</span>
       <span>{searchAt}</span>
-      <button onClick={() => onSearch(data)}>Search</button>
-      <button onClick={() => onDelete({ id, searchAt })}>Delete</button>
+      <SearchButton className="mx-3" onClick={() => onSearch(data)} />
+      <DeleteButton
+        className="mx-3"
+        onClick={() => onDelete({ id, searchAt })}
+      />
     </div>
   );
 };
-
-export default SearchHistoryView;

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useQueryWeatherById } from "queries/weatherQueries";
 import { useFormatWeather } from "../hooks/useFormatData";
+import Card from "components/Container";
 
 const WeatherDetails = ({ locationId = "" }) => {
   const query = useQueryWeatherById(locationId);
@@ -8,10 +9,8 @@ const WeatherDetails = ({ locationId = "" }) => {
   const displayData = useFormatWeather(query);
 
   return (
-    <div style={{ margin: "10px" }}>
-      <div>
-        {displayData.city}, {displayData.country}
-      </div>
+    <>
+      <Card name={`${displayData.city}`} country={`${displayData.country}`} />
       <div>{displayData.status}</div>
       <div>Description: {displayData.description}</div>
       <div>
@@ -19,7 +18,7 @@ const WeatherDetails = ({ locationId = "" }) => {
       </div>
       <div>Humidity: {displayData.humidity}%</div>
       <div>Time: {displayData.unixDatetime}</div>
-    </div>
+    </>
   );
 };
 

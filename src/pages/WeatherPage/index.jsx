@@ -1,11 +1,10 @@
 import * as React from "react";
-import SearchInputView from "./components/SearchInput";
-import SearchHistoryView from "./components/SearchHistory";
-import WeatherDetails from "./components/WeatherDetails";
+import SearchHistoryView from "./views/SearchHistoryView";
+import TodayWeatherView from "./views/TodayWeatherView";
 import { IDefaultLocation } from "constants/defaults";
 import { useQueryWeather } from "./hooks/useQueryWeather";
 
-const TodayWeather = () => {
+const WeatherPage = () => {
   const [location, setLocation] = React.useState(() => IDefaultLocation);
   const { refetch } = useQueryWeather(location);
 
@@ -15,8 +14,7 @@ const TodayWeather = () => {
 
   return (
     <div className="App">
-      <SearchInputView setLocation={setLocation} />
-      <WeatherDetails locationId={location.id} />
+      <TodayWeatherView location={location} setLocation={setLocation} />
       <SearchHistoryView
         selectedHistory={location}
         setSelectedHistory={setLocation}
@@ -26,4 +24,4 @@ const TodayWeather = () => {
   );
 };
 
-export default TodayWeather;
+export default WeatherPage;
