@@ -1,6 +1,6 @@
 import * as React from "react";
 import {
-  fahrenheitToCelsius,
+  kelvinToCelsius,
   celsiusSymbolText,
   formatDateTime,
 } from "../../../helper/convertor";
@@ -18,15 +18,15 @@ export const useFormatWeather = (queryData) => {
       country: sys?.country || "-",
       temp: {
         min: main?.temp_min
-          ? celsiusSymbolText(fahrenheitToCelsius(main.temp_min))
+          ? celsiusSymbolText(kelvinToCelsius(main.temp_min))
           : "-",
         max: main?.temp_max
-          ? celsiusSymbolText(fahrenheitToCelsius(main.temp_max))
+          ? celsiusSymbolText(kelvinToCelsius(main.temp_max))
           : "-",
       },
       humidity: main?.humidity || 0,
       status: weather?.main || "-",
-      description: weather?.weather || "-",
+      description: weather?.description || "-",
     };
   }, [queryData]);
 };

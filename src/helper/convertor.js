@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 
-export const fahrenheitToCelsius = (fahrenheit) => {
-  return (((fahrenheit - 32) * 5) / 9).toFixed(2);
+export const kelvinToCelsius = (kelvin) => {
+  return (kelvin - 273.15).toFixed(2);
 };
 
 export const celsiusSymbolText = (celsius) => {
