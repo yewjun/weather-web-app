@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useGetWeatherById } from "../../../queries/weather.queries";
+import { useGetWeatherById } from "../../../queries/weatherQueries";
 import { useHistory } from "../../../providers/HistoryProvider";
 
 export const useQueryWeather = (location) => {
