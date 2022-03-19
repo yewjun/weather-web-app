@@ -1,24 +1,29 @@
 import * as React from "react";
 import { useGetWeatherById } from "../../../queries/weather.queries";
-import { useHistory } from "../providers/HistoryProvider";
+import { useHistory } from "../../../providers/HistoryProvider";
 
 export const useQueryWeather = (location) => {
   const customHistoryState = useHistory();
+  const [weatherData, setWeatherData] = React.useState(() => undefined);
 
-  const { data, refetch } = useGetWeatherById(location.id, {
-    enabled: false || Boolean(location.id), // turned off by default due to manual refetch is needed
+  const { data, refetch, isFetching } = useGetWeatherById(location.id, {
+    enabled: false, // turned off by default due to manual refetch is needed
     refetchOnWindowFocus: false,
   });
 
   React.useEffect(() => {
-    if (data)
+    if (data) setWeatherData(data);
+  }, [data?.data, isFetching]); // trigger when refetching
+
+  React.useEffect(() => {
+    if (weatherData)
       customHistoryState.setHistory({
         id: location.id,
         country: location.country,
         city: location.city,
         searchAt: Date.now(),
       });
-  }, [data, location]);
+  }, [weatherData]);
 
   return { data, refetch };
 };

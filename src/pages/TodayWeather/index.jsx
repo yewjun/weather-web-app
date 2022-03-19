@@ -1,15 +1,25 @@
 import * as React from "react";
 import SearchInputView from "./components/SearchInput";
 import SearchHistoryView from "./components/SearchHistory";
-import { HistoryProvider } from "./providers/HistoryProvider";
+import { IDefaultLocation } from "../../constants/defaults";
+import { useQueryWeather } from "./hooks/useQueryWeather";
 
 const TodayWeather = () => {
+  const [location, setLocation] = React.useState(() => IDefaultLocation);
+  const { refetch } = useQueryWeather(location);
+
+  React.useEffect(() => {
+    if (location.id) refetch();
+  }, [location]);
+
   return (
     <div className="App">
-      <HistoryProvider>
-        <SearchInputView />
-        <SearchHistoryView />
-      </HistoryProvider>
+      <SearchInputView setLocation={setLocation} />
+      <SearchHistoryView
+        selectedHistory={location}
+        setSelectedHistory={setLocation}
+        refetch={refetch}
+      />
     </div>
   );
 };

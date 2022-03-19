@@ -1,28 +1,28 @@
 import * as React from "react";
-import { useQueryWeather } from "../hooks/useQueryWeather";
-import { useHistory } from "./../providers/HistoryProvider";
-import { IDefaultLocation } from "../../../constants/defaults";
+import { useHistory } from "../../../providers/HistoryProvider";
 import { usePrevious } from "../../../hooks/usePrevious";
 
-const SearchHistoryView = () => (
+const SearchHistoryView = (props) => (
   <div>
     Search History
-    <SearchHistoryList />
+    <SearchHistoryList {...props} />
   </div>
 );
 
-const SearchHistoryList = () => {
-  const [selectedHistory, setSelectedHistory] =
-    React.useState(IDefaultLocation);
-
+const SearchHistoryList = ({
+  selectedHistory,
+  setSelectedHistory,
+  refetch,
+}) => {
   const { values, removeHistory } = useHistory();
   const prevValues = usePrevious(selectedHistory);
 
-  const { refetch } = useQueryWeather(selectedHistory);
-
   const onSearch = (values) => {
-    if (prevValues === values) return refetch(); // refetch same id when select the same history
-    setSelectedHistory(values);
+    if (prevValues !== values) {
+      setSelectedHistory(values);
+    } else {
+      refetch(); // ensure refetch repeatly clicking on same search
+    }
   };
 
   return values.map((value) => (

@@ -1,22 +1,22 @@
 import * as React from "react";
 import { useFormik } from "formik";
-import { useQueryWeather } from "../hooks/useQueryWeather";
 import { useFilterList } from "../../../hooks/useList";
-import { IDefaultLocation } from "../../../constants/defaults";
+import { IDefaultSearchCountryResponse } from "../../../constants/defaults";
 
-const SearchInputView = () => {
-  const [location, setLocation] = React.useState(IDefaultLocation);
-  const refLocation = React.useRef(IDefaultLocation);
-
+const SearchInputView = ({ setLocation }) => {
   const initialValues = {
     city: "",
     country: "",
   };
 
-  useQueryWeather(refLocation.current);
+  let filtered = IDefaultSearchCountryResponse;
 
   const handleSubmit = () => {
-    refLocation.current = location;
+    setLocation({
+      id: filtered.id,
+      country: filtered.country,
+      city: filtered.name,
+    });
   };
 
   const formikBag = useFormik({
@@ -24,18 +24,10 @@ const SearchInputView = () => {
     onSubmit: handleSubmit,
   });
 
-  const filtered = useFilterList(
+  filtered = useFilterList(
     formikBag?.values.country || "",
     formikBag?.values.city || ""
   );
-
-  React.useEffect(() => {
-    setLocation({
-      id: filtered.id,
-      country: filtered.country,
-      city: filtered.name,
-    });
-  }, [filtered]);
 
   return (
     <form onSubmit={formikBag.handleSubmit}>
