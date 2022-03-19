@@ -34,7 +34,7 @@ const SearchInputView = ({ setLocation }) => {
   return (
     <div class="container mx-auto bg-gray-200 rounded-lg p-14">
       <form onSubmit={formikBag.handleSubmit}>
-        <div className="flex md:flex-row md:flex-nowrap flex-wrap flex-col">
+        <div className="flex md:flex-row lg:flex-nowrap flex-wrap flex-col">
           <InputField
             name="country"
             label="Country"

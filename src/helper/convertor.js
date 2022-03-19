@@ -9,5 +9,5 @@ export const celsiusSymbolText = (celsius) => {
 };
 
 export const formatDateTime = (datetime) => {
-  return format(new Date(datetime * 1000), "dd/MM/yyyy HH:mm:ssaa");
+  return format(new Date(datetime), "dd/MM/yyyy HH:mm:ssaa");
 };

@@ -1,6 +1,7 @@
 export const RoundedButton = (props) => (
   <div
-    className={`w-10 h-10 px-4 py-4 inline-flex items-center justify-center rounded-full text-white flex-shrink-0 cursor-pointer ${props.className}`}
+    className={`w-10 h-10 px-1 py-1 inline-flex items-center justify-center rounded-full text-white flex-shrink-0 cursor-pointer ${props.className}`}
+    onClick={props.onClick}
   >
     <button className="absolute right-0 top-0 mt-5 mr-4" {...props}>
       {props.children}
@@ -8,8 +9,8 @@ export const RoundedButton = (props) => (
   </div>
 );
 
-export const SearchButton = (props) => (
-  <RoundedButton {...props} className="bg-blue-300">
+export const SearchIconButton = (props) => (
+  <RoundedButton {...props} className="bg-blue-300" onClick={props.onClick}>
     <svg
       className="text-gray-600 h-4 w-4 fill-current"
       xmlns="http://www.w3.org/2000/svg"
@@ -28,8 +29,8 @@ export const SearchButton = (props) => (
   </RoundedButton>
 );
 
-export const DeleteButton = (props) => (
-  <RoundedButton {...props} className="bg-red-400">
+export const DeleteIconButton = (props) => (
+  <RoundedButton {...props} className="bg-red-400" onClick={props.onClick}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"
