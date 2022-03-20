@@ -1,9 +1,10 @@
 import axios from "axios";
+import { weatherServiceName } from "./";
 import { config } from "constants/config";
 
-const { openWeatherUrl, openWeatherApiKey } = config;
+const { openWeatherBaseUrl, openWeatherBasePath, openWeatherApiKey } = config;
 
 export const getWeatherById = (id) => {
-  const url = `${openWeatherUrl}/data/2.5/weather?id=${id}&appid=${openWeatherApiKey}`;
+  const url = `${openWeatherBaseUrl}${openWeatherBasePath}${weatherServiceName}?id=${id}&appid=${openWeatherApiKey}`;
   return axios.get(url);
 };

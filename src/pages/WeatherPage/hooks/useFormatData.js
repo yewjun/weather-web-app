@@ -27,6 +27,7 @@ export const useFormatWeather = (queryData) => {
       humidity: main?.humidity || 0,
       status: weather?.main || "-",
       description: weather?.description || "-",
+      iconCode: weather?.icon || "",
     };
   }, [queryData]);
 };

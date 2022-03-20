@@ -3,6 +3,7 @@ import { useHistory } from "providers/HistoryProvider";
 import { usePrevious } from "hooks/usePrevious";
 import { SearchIconButton, DeleteIconButton } from "components/Button";
 import { formatDateTime } from "helper/convertor";
+import Card from "components/Card";
 
 export const SearchHistoryList = ({
   selectedHistory,
@@ -20,18 +21,24 @@ export const SearchHistoryList = ({
     }
   };
 
-  return values
-    .slice(0)
-    .reverse()
-    .map((value, index) => (
-      <HistoryListView
-        key={value.searchAt}
-        index={index}
-        data={value}
-        onDelete={removeHistory}
-        onSearch={onSearch}
-      />
-    ));
+  return values.length ? (
+    values
+      .slice(0)
+      .reverse()
+      .map((value, index) => (
+        <HistoryListView
+          key={value.searchAt}
+          index={index}
+          data={value}
+          onDelete={removeHistory}
+          onSearch={onSearch}
+        />
+      ))
+  ) : (
+    <Card className="bg-gray-200">
+      <span>No History Showed</span>
+    </Card>
+  );
 };
 
 const HistoryListView = ({ index, data, onDelete, onSearch }) => {
@@ -48,7 +55,7 @@ const HistoryListView = ({ index, data, onDelete, onSearch }) => {
         </div>
         <div className="flex flex-col justify-end md:flex-row text-sm font-normal text-gray-500 tracking-wide items-center">
           <span className="my-2 mx-4 text-right">
-            {formatDateTime(searchAt)}
+            {formatDateTime(searchAt / 1000)}
           </span>
           <div className="mx-5 w-100 self-end flex flex-row space-x-1 md:space-x-4">
             <SearchIconButton className="mx-3" onClick={() => onSearch(data)} />

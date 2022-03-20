@@ -1,5 +1,5 @@
 import * as React from "react";
-import list from "constants/city.list.json";
+import list from "constants/cityList.json";
 import { IDefaultSearchCountryResponse } from "constants/defaults";
 
 export const useFilterList = (inputCountry, inputCity) =>
