@@ -4,8 +4,11 @@ import {
   celsiusSymbolText,
   formatDateTime,
 } from "helper/convertor";
+import { useAllCountry } from "hooks/useList";
 
 export const useFormatWeather = (queryData) => {
+  const allCountry = useAllCountry();
+
   return React.useMemo(() => {
     const data = queryData?.data || {};
     const main = data?.main || {};
@@ -15,7 +18,7 @@ export const useFormatWeather = (queryData) => {
     return {
       unixDatetime: data?.dt ? formatDateTime(data.dt) : "-",
       city: data?.name || "-",
-      country: sys?.country || "-",
+      country: sys?.country ? allCountry[sys.country] : "-",
       temp: {
         min: main?.temp_min
           ? celsiusSymbolText(kelvinToCelsius(main.temp_min))
@@ -29,5 +32,5 @@ export const useFormatWeather = (queryData) => {
       description: weather?.description || "-",
       iconCode: weather?.icon || "",
     };
-  }, [queryData]);
+  }, [queryData, allCountry]);
 };

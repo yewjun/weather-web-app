@@ -1,24 +1,32 @@
 import * as React from "react";
 import SearchHistoryView from "./views/SearchHistoryView";
 import TodayWeatherView from "./views/TodayWeatherView";
-import { IDefaultLocation } from "constants/defaults";
+import { IDefaultLocation } from "constants/constant";
 import { useQueryWeather } from "./hooks/useQueryWeather";
+import { useAllCountry } from "hooks/useList";
 
 const WeatherPage = () => {
+  const allCountry = useAllCountry();
   const [location, setLocation] = React.useState(() => IDefaultLocation);
-  const { refetch } = useQueryWeather(location);
+  const { refetch, ...queryState } = useQueryWeather(location);
 
   React.useEffect(() => {
     if (location.id) refetch();
   }, [location, refetch]);
 
   return (
-    <div className="App">
-      <TodayWeatherView location={location} setLocation={setLocation} />
+    <div className="App relative">
+      <TodayWeatherView
+        location={location}
+        setLocation={setLocation}
+        allCountry={allCountry}
+        queryState={queryState}
+      />
       <SearchHistoryView
         selectedHistory={location}
         setSelectedHistory={setLocation}
         refetch={refetch}
+        allCountry={allCountry}
       />
     </div>
   );

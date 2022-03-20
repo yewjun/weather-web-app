@@ -2,7 +2,7 @@ import * as React from "react";
 import { config } from "constants/config";
 import { useQueryWeatherById } from "queries/weatherQueries";
 import { useFormatWeather } from "../hooks/useFormatData";
-import Card from "components/Card";
+import { Card } from "components";
 
 const WeatherDetails = ({ locationId = "" }) => {
   const query = useQueryWeatherById(locationId);
@@ -62,24 +62,28 @@ const WeatherDetails = ({ locationId = "" }) => {
           </div>
         </>
       ) : (
-        <div class="flex flex-col flex-1 gap-5 sm:p-2">
-          <div class="flex flex-1 flex-col items-center gap-3">
-            <div className="w-20 h-20 rounded-full bg-gray-200 animate-pulse"></div>
-            <div class="bg-gray-200 w-full animate-pulse h-14 rounded-2xl"></div>
-            <div class="bg-gray-200 w-full animate-pulse h-3 rounded-2xl"></div>
-            <div class="bg-gray-200 w-full animate-pulse h-3 rounded-2xl"></div>
-            <div class="bg-gray-200 w-full animate-pulse h-3 rounded-2xl"></div>
-            <div class="bg-gray-200 w-full animate-pulse h-3 rounded-2xl"></div>
-          </div>
-          <div class="mt-auto flex gap-3">
-            <div class="bg-gray-200 w-20 h-8 animate-pulse rounded-full"></div>
-            <div class="bg-gray-200 w-20 h-8 animate-pulse rounded-full"></div>
-            <div class="bg-gray-200 w-20 h-8 animate-pulse rounded-full ml-auto"></div>
-          </div>
-        </div>
+        <WeatherLoadingCard />
       )}
     </Card>
   );
 };
+
+const WeatherLoadingCard = () => (
+  <div className="flex flex-col flex-1 gap-5 sm:p-2">
+    <div className="flex flex-1 flex-col items-center gap-3">
+      <div className="w-20 h-20 rounded-full bg-gray-200"></div>
+      <div className="bg-gray-200 w-full h-14 rounded-2xl"></div>
+      <div className="bg-gray-200 w-full h-3 rounded-2xl"></div>
+      <div className="bg-gray-200 w-full h-3 rounded-2xl"></div>
+      <div className="bg-gray-200 w-full h-3 rounded-2xl"></div>
+      <div className="bg-gray-200 w-full h-3 rounded-2xl"></div>
+    </div>
+    <div className="mt-auto flex gap-3">
+      <div className="bg-gray-200 w-20 h-8 rounded-full"></div>
+      <div className="bg-gray-200 w-20 h-8 rounded-full"></div>
+      <div className="bg-gray-200 w-20 h-8 rounded-full ml-auto"></div>
+    </div>
+  </div>
+);
 
 export default WeatherDetails;

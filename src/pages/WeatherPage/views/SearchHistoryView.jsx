@@ -1,6 +1,4 @@
-import Section from "components/Section";
-import Container from "components/Container";
-import Header from "components/Header";
+import { Section, Container, Header } from "components";
 import { SearchHistoryList } from "../components/SearchHistory";
 
 const SearchHistoryView = (props) => (

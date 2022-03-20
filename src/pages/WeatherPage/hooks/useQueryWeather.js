@@ -6,10 +6,14 @@ export const useQueryWeather = (location) => {
   const { setHistory, values } = useHistory();
   const [weatherData, setWeatherData] = React.useState(() => undefined);
 
-  const { data, refetch } = useGetWeatherById(location.id, {
-    enabled: false, // turned off by default due to manual refetch is needed
-    refetchOnWindowFocus: false,
-  });
+  const { data, refetch, isError, error, isLoading } = useGetWeatherById(
+    location.id,
+    {
+      enabled: false, // turned off by default due to manual refetch is needed
+      refetchOnWindowFocus: false,
+      retry: false,
+    }
+  );
 
   React.useEffect(() => {
     if (data) setWeatherData(data);
@@ -33,5 +37,5 @@ export const useQueryWeather = (location) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [weatherData, location]);
 
-  return { data, refetch };
+  return { data, refetch, isError, error, isLoading };
 };

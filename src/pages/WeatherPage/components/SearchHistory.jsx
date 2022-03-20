@@ -1,14 +1,14 @@
 import * as React from "react";
 import { useHistory } from "providers/HistoryProvider";
 import { usePrevious } from "hooks/usePrevious";
-import { SearchIconButton, DeleteIconButton } from "components/Button";
+import { SearchIconButton, DeleteIconButton, Card } from "components";
 import { formatDateTime } from "helper/convertor";
-import Card from "components/Card";
 
 export const SearchHistoryList = ({
   selectedHistory,
   setSelectedHistory,
   refetch,
+  allCountry,
 }) => {
   const { values, removeHistory } = useHistory();
   const prevValues = usePrevious(selectedHistory);
@@ -32,6 +32,7 @@ export const SearchHistoryList = ({
           data={value}
           onDelete={removeHistory}
           onSearch={onSearch}
+          allCountry={allCountry}
         />
       ))
   ) : (
@@ -41,17 +42,17 @@ export const SearchHistoryList = ({
   );
 };
 
-const HistoryListView = ({ index, data, onDelete, onSearch }) => {
+const HistoryListView = ({ index, data, onDelete, onSearch, allCountry }) => {
   const { id = "", country = "", city = "", searchAt = "" } = data;
 
   return (
-    <div class="bg-white shadow-md rounded-lg px-3 py-2 mb-4 hover:bg-gray-100">
+    <div className="bg-white shadow-md rounded-lg px-3 py-2 mb-4 hover:bg-gray-100">
       <div className="flex justify-start text-gray-700 rounded-md px-2 py-2 my-2">
         <span className="w-2 m-2 self-center">{`${index + 1}.`}</span>
         <div className="flex-grow font-medium px-2 self-center">
           <span>{city}</span>
           <span className="mx-3">-</span>
-          <span>{country}</span>
+          <span>{allCountry[country] ?? "-"}</span>
         </div>
         <div className="flex flex-col justify-end md:flex-row text-sm font-normal text-gray-500 tracking-wide items-center">
           <span className="my-2 mx-4 text-right">

@@ -1,4 +1,4 @@
-const Header = ({ title }) => (
+export const Header = ({ title }) => (
   <div className="text-left mb-10">
     <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4">
       {title}
@@ -8,5 +8,3 @@ const Header = ({ title }) => (
     </div>
   </div>
 );
-
-export default Header;

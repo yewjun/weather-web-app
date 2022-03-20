@@ -1,13 +1,21 @@
-import SearchInputView from "../components/SearchInput";
+import SearchInputBar from "../components/SearchInput";
 import WeatherDetails from "../components/WeatherDetails";
-import Section from "components/Section";
-import Header from "components/Header";
+import { Section, Header } from "components";
 
-const TodayWeatherView = ({ location, setLocation }) => (
+const TodayWeatherView = ({
+  location,
+  setLocation,
+  allCountry,
+  queryState,
+}) => (
   <Section>
     <Header title={"Today's Weather"} />
-    <SearchInputView setLocation={setLocation} />
-    <WeatherDetails locationId={location.id} />
+    <SearchInputBar
+      setLocation={setLocation}
+      allCountry={allCountry}
+      queryState={queryState}
+    />
+    <WeatherDetails locationId={location.id} allCountry={allCountry} />
   </Section>
 );
 
