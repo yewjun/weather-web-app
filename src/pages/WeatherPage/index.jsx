@@ -5,6 +5,7 @@ import { IDefaultLocation } from "constants/constant";
 import { useQueryWeather } from "./hooks/useQueryWeather";
 import { useAllCountry } from "hooks/useList";
 
+// main page
 const WeatherPage = () => {
   const allCountry = useAllCountry();
   const [location, setLocation] = React.useState(() => IDefaultLocation);
@@ -15,7 +16,7 @@ const WeatherPage = () => {
   }, [location, refetch]);
 
   return (
-    <div className="App relative">
+    <>
       <TodayWeatherView
         location={location}
         setLocation={setLocation}
@@ -28,7 +29,7 @@ const WeatherPage = () => {
         refetch={refetch}
         allCountry={allCountry}
       />
-    </div>
+    </>
   );
 };
 

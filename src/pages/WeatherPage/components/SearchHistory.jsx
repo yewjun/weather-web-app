@@ -13,6 +13,7 @@ export const SearchHistoryList = ({
   const { values, removeHistory } = useHistory();
   const prevValues = usePrevious(selectedHistory);
 
+  // to handle refetch history country and also handle continuos click on same history
   const onSearch = (values) => {
     if (prevValues !== values) {
       setSelectedHistory(values);
@@ -21,6 +22,7 @@ export const SearchHistoryList = ({
     }
   };
 
+  // display latest history data first
   return values.length ? (
     values
       .slice(0)

@@ -1,3 +1,4 @@
+// configure all environment values
 export const config = {
   isDevEnvironment: process.env.REACT_APP_STAGE === "dev",
   environment: process.env.REACT_APP_STAGE,

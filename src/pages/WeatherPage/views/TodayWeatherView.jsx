@@ -2,6 +2,7 @@ import SearchInputBar from "../components/SearchInput";
 import WeatherDetails from "../components/WeatherDetails";
 import { Section, Header } from "components";
 
+// first section of main page to search and display weather details
 const TodayWeatherView = ({
   location,
   setLocation,

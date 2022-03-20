@@ -1,6 +1,7 @@
 import { Section, Container, Header } from "components";
 import { SearchHistoryList } from "../components/SearchHistory";
 
+// second section of main page to show all history records
 const SearchHistoryView = (props) => (
   <Section>
     <Header title={"Search History"} />

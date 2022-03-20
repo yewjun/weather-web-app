@@ -16,13 +16,13 @@ import {
   IDefaultErrorAlert,
 } from "constants/constant";
 
+// component for input country and city with search and reset buttons
 const SearchInputBar = ({ setLocation, allCountry, queryState }) => {
   const { isError, error, isLoading } = queryState;
   const [alertError, setAlertError] = React.useState(IDefaultErrorAlert);
   let filtered = IDefaultSearchCountryResponse;
 
   React.useEffect(() => {
-    console.log("isError: ", isError);
     if (isError) {
       setAlertError({
         isError,
@@ -41,6 +41,7 @@ const SearchInputBar = ({ setLocation, allCountry, queryState }) => {
       city: filtered.name,
     });
 
+    // display error whenever mismatch of country with city (not exists in OpenWeather list)
     if (filtered.id === 0) {
       const { country, city } = formikBag.values;
       setAlertError({
@@ -53,6 +54,7 @@ const SearchInputBar = ({ setLocation, allCountry, queryState }) => {
     }
   };
 
+  // use formik to handle form update, validate and submit values
   const formikBag = useFormik({
     initialValues: initialFormikValues,
     validate: (values) =>
@@ -60,6 +62,7 @@ const SearchInputBar = ({ setLocation, allCountry, queryState }) => {
     onSubmit: handleSubmit,
   });
 
+  // use hook to filter out to get ID by country and city that from OpenWeather list
   filtered = useFilterList(
     formikBag?.values.country || "",
     formikBag?.values.city || ""
@@ -125,6 +128,7 @@ const SearchInputBar = ({ setLocation, allCountry, queryState }) => {
   );
 };
 
+// map all available countries as options
 const CountryOptions = ({ data }) =>
   (Object.entries(data) || []).map(([key, value]) => (
     <option key={key} value={key}>

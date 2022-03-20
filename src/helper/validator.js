@@ -1,3 +1,4 @@
+// validate form in formik
 export const formikValidator = (values = {}, fields = []) => {
   const errors = {};
 
